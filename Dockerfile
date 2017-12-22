@@ -14,6 +14,11 @@ RUN python get-pip.py
 RUN pip install awscli \
     docker-compose
 
+RUN docker-php-ext-install -j$(nproc) \
+    pdo_mysql \
+    pdo \
+    json
+
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
     && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
     # Make sure we're installing what we think we're installing!
